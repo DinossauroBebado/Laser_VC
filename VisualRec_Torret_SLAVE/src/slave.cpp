@@ -38,8 +38,7 @@ bool lastLaserState = false;
 void OnDataRecv(uint8_t *mac, uint8_t *incomingData, uint8_t len)
 {
     memcpy(&myData, incomingData, sizeof(myData));
-    Serial.print("Bytes received: ");
-    Serial.println(len);
+
     Serial.print("X: ");
     Serial.println(myData.x);
     Serial.print("Y: ");
@@ -47,16 +46,6 @@ void OnDataRecv(uint8_t *mac, uint8_t *incomingData, uint8_t len)
     Serial.print("Laser: ");
     Serial.println(myData.laser); //bool pra saber se o laser esta ligado ou desligado
     Serial.println();
-
-    if (myData.laser == true && lastLaserState == false)
-    {
-        digitalWrite(laserPin, HIGH);
-    }
-    else
-    {
-        digitalWrite(laserPin, LOW);
-    }
-    lastLaserState = myData.laser;
 
     valX = map(myData.x, 0, 1023, 45, 150);
     valY = map(myData.y, 0, 1023, 45, 150);
