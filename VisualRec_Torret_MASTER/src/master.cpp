@@ -18,7 +18,10 @@
 // REPLACE WITH RECEIVER MAC Address
 uint8_t broadcastAddress[] = {0x8C, 0xAA, 0xB5, 0x7B, 0x49, 0xFF};
 
-const int analogInPin = A0; // ESP8266 Analog Pin ADC0 = A0
+String message = String(10);
+int X;
+int Y;
+bool laser;
 
 // Structure example to send data
 // Must match the receiver structure
@@ -53,6 +56,7 @@ void setup()
 {
     // Init Serial Monitor
     Serial.begin(115200);
+    Serial.setTimeout(10);
 
     // Set device as a Wi-Fi Station
     WiFi.mode(WIFI_STA);
@@ -75,16 +79,24 @@ void setup()
 
 void loop()
 {
-    if ((millis() - lastTime) > timerDelay)
+    while (Serial.available())
     {
-        // Set values to send
-        myData.x = analogRead(analogInPin);
-        myData.y = 110;
-        myData.laser = false;
+        message = Serial.readString();
+        message.trim();
+        X = message.substring(1, 4).toInt();
+        Y = message.substring(6, 8).toInt();
 
-        // Send message via ESP-NOW
-        esp_now_send(broadcastAddress, (uint8_t *)&myData, sizeof(myData));
+        if ((millis() - lastTime) > timerDelay)
+        {
+            // Set values to send
+            myData.x = X;
+            myData.y = Y;
+            myData.laser = false;
 
-        lastTime = millis();
+            // Send message via ESP-NOW
+            esp_now_send(broadcastAddress, (uint8_t *)&myData, sizeof(myData));
+
+            lastTime = millis();
+        }
     }
 }
