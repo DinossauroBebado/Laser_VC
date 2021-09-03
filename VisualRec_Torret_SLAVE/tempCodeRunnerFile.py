@@ -1,0 +1,1 @@
+A estatistica não corrigida foi utilizada

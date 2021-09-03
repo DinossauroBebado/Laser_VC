@@ -32,6 +32,7 @@ Servo servoY; // Cria um objeto servo
 
 int valX;
 int valY;
+
 int laserPin = 13; //D7
 bool lastLaserState = false;
 // Callback function that will be executed when data is received
