@@ -51,6 +51,9 @@ void OnDataRecv(uint8_t *mac, uint8_t *incomingData, uint8_t len)
     valX = map(myData.x, 0, 1023, 45, 150);
     valY = map(myData.y, 0, 1023, 45, 150);
 
+    Serial.println(valX);
+    Serial.println(valY);
+
     servoY.write(valY);
     servoX.write(valX);
 }

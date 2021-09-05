@@ -84,7 +84,11 @@ void loop()
         message = Serial.readString();
         message.trim();
         X = message.substring(1, 4).toInt();
-        Y = message.substring(6, 8).toInt();
+        Y = message.substring(5, 8).toInt();
+
+        Serial.print(X);
+        Serial.print(" ");
+        Serial.println(Y);
 
         if ((millis() - lastTime) > timerDelay)
         {
