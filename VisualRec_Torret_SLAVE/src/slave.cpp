@@ -19,8 +19,8 @@
 // Must match the sender structure
 typedef struct struct_message
 {
-    int x; //fio azul
-    int y; //fio laranja
+    int x; //fio laranja
+    int y; //fio azul
     bool laser;
 } struct_message;
 
@@ -48,8 +48,8 @@ void OnDataRecv(uint8_t *mac, uint8_t *incomingData, uint8_t len)
     Serial.println(myData.laser); //bool pra saber se o laser esta ligado ou desligado
     Serial.println();
 
-    valX = map(myData.x, 0, 1023, 45, 150);
-    valY = map(myData.y, 0, 1023, 45, 150);
+    valX = map(myData.x, 0, 500, 0, 170);
+    valY = map(myData.y, 0, 500, 0, 170);
 
     Serial.println(valX);
     Serial.println(valY);
