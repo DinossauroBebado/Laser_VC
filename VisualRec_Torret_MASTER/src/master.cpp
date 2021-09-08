@@ -95,7 +95,7 @@ void loop()
             // Set values to send
             myData.x = X;
             myData.y = Y;
-            myData.laser = false;
+            myData.laser = true;
 
             // Send message via ESP-NOW
             esp_now_send(broadcastAddress, (uint8_t *)&myData, sizeof(myData));

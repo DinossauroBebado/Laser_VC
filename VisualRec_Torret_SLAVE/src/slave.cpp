@@ -34,7 +34,7 @@ int valX;
 int valY;
 
 int laserPin = 13; //D7
-bool lastLaserState = false;
+bool LaserState = false;
 // Callback function that will be executed when data is received
 void OnDataRecv(uint8_t *mac, uint8_t *incomingData, uint8_t len)
 {
@@ -56,6 +56,15 @@ void OnDataRecv(uint8_t *mac, uint8_t *incomingData, uint8_t len)
 
     servoY.write(valY);
     servoX.write(valX);
+
+    if (myData.laser)
+    {
+        digitalWrite(laserPin, HIGH);
+    }
+    else
+    {
+        digitalWrite(laserPin, LOW);
+    }
 }
 //coment
 void setup()
@@ -63,6 +72,14 @@ void setup()
     servoX.attach(14); //D5
     servoY.attach(12); //D6
     pinMode(laserPin, OUTPUT);
+    digitalWrite(laserPin, HIGH);
+    delay(500);
+    digitalWrite(laserPin, LOW);
+    delay(500);
+    digitalWrite(laserPin, HIGH);
+    delay(500);
+    digitalWrite(laserPin, LOW);
+    delay(500);
     // Initialize Serial Monitor
     Serial.begin(115200);
 
