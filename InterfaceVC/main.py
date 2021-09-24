@@ -4,8 +4,9 @@ import cv2 as cv
 
 from identificar import bola, pessoa
 
-from SerialComunication import cordenadas
+import SerialComunication
 
+import threading
 pessoas = ['Dinossauro Bebado']
 
 # se quiser passar um video para o programa descomentar essa linha
@@ -38,7 +39,10 @@ while True:
         frame, cord = bola(frame)
 
         if(cord != None):
-            cordenadas(cord)
+            x = threading.Thread(
+                target=lambda: SerialComunication.cordenadas(cord))
+            x.start()
+
         # mostra
 
         if(salvar):
