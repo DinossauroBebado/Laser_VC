@@ -4,6 +4,8 @@ import cv2 as cv
 
 from identificar import bola, pessoa
 
+from SerialComunication import cordenadas
+
 pessoas = ['Dinossauro Bebado']
 
 # se quiser passar um video para o programa descomentar essa linha
@@ -34,6 +36,9 @@ while True:
         #pessoa(frame, pessoas)
         # função para o reconhecimento da bola retorna as  cordenadas da bola tupla
         frame, cord = bola(frame)
+
+        if(cord != None):
+            cordenadas(cord)
         # mostra
 
         if(salvar):

@@ -72,6 +72,7 @@ def bola(frame):
 
                 cv.putText(frame, "X: " + str(int(x))+" Y: "+str(int(y)), (50, 375),
                            cv.FONT_HERSHEY_COMPLEX, 1.0, (255, 255, 255), thickness=1)
-                cord = ((int(x), int(y)))
+                cord = (int(x), int(y))
 
-    return frame, cord
+                return frame, cord
+    return frame, None
