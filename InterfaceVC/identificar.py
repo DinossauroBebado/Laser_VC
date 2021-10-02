@@ -6,7 +6,8 @@ face_recognizer = cv.face.LBPHFaceRecognizer_create()
 face_recognizer.read(r"InterfaceVC\treinado_DINO.yml")
 TOLERANCIA = 100
 
-verdeClaro = (21, 45, 102)  # modificar para um ajuste
+# modificar para um ajuste (25, 100, 102)  (21, 45, 102)
+verdeClaro = (25, 100, 102)
 verdeEscuro = (70, 255, 255)
 
 
