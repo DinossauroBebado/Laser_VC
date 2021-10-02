@@ -6,8 +6,16 @@ from identificar import bola, pessoa
 
 import SerialComunication
 
+import SerialComMouse
+
 import threading
 pessoas = ['Dinossauro Bebado']
+
+config = {"salvar": False, "mouse": False,
+          "simulation": False}  # mouse feature not working
+
+# TO DO
+# fix mouse function
 
 # se quiser passar um video para o programa descomentar essa linha
 #video = r"src\VisualRec\midia\MalabBruto1.mp4"
@@ -15,9 +23,10 @@ pessoas = ['Dinossauro Bebado']
 # para usar a webcam deixar essa linha
 video = ""
 
-# para salvar o video modificado em AVi modar essa bol
+# para salvar o video modificado em AVi mudar essa bol
 # Testado no windons
-salvar = False
+salvar = config["salvar"]
+simulation = config["simulation"]
 
 if video == "":
     video_capture = cv.VideoCapture(0)
@@ -36,6 +45,10 @@ while True:
         # chama a função para usar o reconhecimento facial
         #pessoa(frame, pessoas)
         # função para o reconhecimento da bola retorna as  cordenadas da bola tupla
+        if (config["mouse"]):
+            y = threading.Thread(target=SerialComMouse.mouseMov)
+            y.start()
+
         frame, cord = bola(frame)
 
         if(cord != None):
