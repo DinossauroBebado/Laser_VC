@@ -1,9 +1,12 @@
 
-from vpython import *
+import vpython
+
+# doesnt work in chrome who knows why
+# setting  the default browser to safari fixed the problem
 
 from time import *
 
-ball = sphere()
+ball = vpython.sphere(color=vpython.color.green)
 
 while True:
 
